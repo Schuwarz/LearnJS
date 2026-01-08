@@ -34,42 +34,6 @@ function multiplyNumeric(obj) {
 	}
 }
 
-let calculator = {
-
-	read() {
-		this.a = +prompt('a = ', '');
-		this.b = +prompt('b = ', '');
-	},
-
-	sum() {
-		return this.a + this.b;
-	},
-
-	mul() {
-		return this.a * this.b;
-	}
-
-};
-
-let ladder = {
-  step: 0,
-
-  up() {
-    this.step++;
-    return this;
-  },
-
-  down() {
-    this.step--;
-    return this;
-  },
-
-  showStep() {
-    alert( this.step );
-    return this;
-  }
-};
-
 function Calculator() {
 	this.read = function() {
 		this.a = +prompt('a = ', '');
@@ -91,4 +55,19 @@ function Accumulator(startingValue) {
 	this.read = function() {
 		this.value += +prompt('Введите число: ', 0);
 	};
+}
+
+function readNumber() {
+  let n = prompt('Введите число', '');
+
+  if (isNaN(+n) == true) {
+    confirm('Еще раз...');
+    return readNumber();
+  }
+
+  if (n == '' || n === null) {
+    return null;
+  }
+
+  return n;
 }

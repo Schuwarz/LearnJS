@@ -135,4 +135,70 @@ function User(name) {
 let user = new User("Jack");
 */
 
+// !!! Потерял конспект по темам Конструктор, оператор "new" и Опциональная цепочка '?.'
+
+/*
+let id = Symbol("id");
+
+let obj = {
+  prop: '123',
+  [id]: 123,
+}
+
+// alert(id.toString());
+// alert(id.description);
+
+// Symbol.for(key) Проверяем глобальный реестр и возвращаем или создаем новый символ по имени
+
+// Symbol.keyFor(sym) Принимает глобальный символ и возвращает его имя.
+
+// Хинт - преобразование типов. string, number, default
+
+// Symbol.toPrimitive
+
+/* obj[Symbol.toPrimitive] = function(hint) {
+  код для преобразования
+  возвращает примитивное значение
+  hint = чему-то из "string", "number", "default"
+}
+*/
+
+// toString (приоритет для string) / valueOf (приоритет для number)
+
+// по умолчанию toString -> [object Object]
+
+// по умолчанию valueOf -> сам объект
+
+// У примитивов есть методы, для этого создается объект обертка (сам)
+
+// let n = 1_000_000_000 = 1e9
+// let n = 0.000001 = 1e-6
+// let n = 0xFF
+// let n = 0b11111111;
+// let n = 0o377;
+
+// toString(base) base-система счисления
+
+// Math.floor округление в меньшую
+// Math.ceil в большую
+// Math.round до целого
+// Math.trunc удаление дробной
+
+// toFixed(n) n-цифры после запятой
+
+// isNaN(value)
+// Number.isNaN(value)
+
+// isFinite(value)
+// Number.isFinite(value)
+
+// Object.is(a, b) (Nan === NaN)true (0 === -0)false
+
+// parseInt(str, base) возвращает число из строки
+// parseFloat() возвращает число с точкой
+
+// Math.random()
+// Math.max(a, b, ..)
+// Math.min(a, b, ..)
+// Math.pow(n, power)
 
