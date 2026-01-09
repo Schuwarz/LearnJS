@@ -98,8 +98,6 @@
 
 // for (let key in object) { ... }
 
-// Object.assign(dest, [src1, src2, src3...]) копирует свойства объектов src в объект dest
-
 // Сборщик мусора. Чистит недостижимые объекты
 // Сборка по поколениям (Generational collection)
 // Инкрементальная сборка (Incremental collection)
@@ -109,22 +107,7 @@
 
 // Когда мы пишем наш код, используя объекты для представления сущностей реального мира – ООП
 
-/*
-user = {
-  sayHi: function() {
-    alert("Привет");
-  }
-};
-
-user = {
-	sayHi() {
-		alert('Hello');
-	}
-};
-*/
-
 // Для доступа к информации внутри объекта метод может использовать ключевое слово this
-
 
 /*
 function User(name) {
@@ -144,13 +127,6 @@ let obj = {
   prop: '123',
   [id]: 123,
 }
-
-// alert(id.toString());
-// alert(id.description);
-
-// Symbol.for(key) Проверяем глобальный реестр и возвращаем или создаем новый символ по имени
-
-// Symbol.keyFor(sym) Принимает глобальный символ и возвращает его имя.
 
 // Хинт - преобразование типов. string, number, default
 
@@ -177,28 +153,49 @@ let obj = {
 // let n = 0b11111111;
 // let n = 0o377;
 
-// toString(base) base-система счисления
+// alert(`... ${...}`)
+/* 
+let guestList = `Guests:
+  * John
+  * Pete 
+  * Mary 
+`;
+*/
 
-// Math.floor округление в меньшую
-// Math.ceil в большую
-// Math.round до целого
-// Math.trunc удаление дробной
+// \n символ перевода строки
+// let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-// toFixed(n) n-цифры после запятой
+// str.length
 
-// isNaN(value)
-// Number.isNaN(value)
+// for (let char of "Hello") {...}
 
-// isFinite(value)
-// Number.isFinite(value)
+// ~ побитовое НЕ
 
-// Object.is(a, b) (Nan === NaN)true (0 === -0)false
+// alert( 'a' > 'Z' ); true
+// alert( 'Österreich' > 'Zealand' ); true
 
-// parseInt(str, base) возвращает число из строки
-// parseFloat() возвращает число с точкой
+// МАССИВЫ
 
-// Math.random()
-// Math.max(a, b, ..)
-// Math.min(a, b, ..)
-// Math.pow(n, power)
+// let arr = new Array();
+// let arr = [];
+
+// очередь - добавлять в конец, удалять в начале
+// стек - добавлять в конце, удалять в конце
+
+/*
+for (let i=0; i<arr.length; i++) {...}
+
+for (let item of arr) {...}
+*/
+
+/* let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+alert( matrix[1][1] );
+*/
+
+// String(arr) возвращает строку '1,2,3'
 

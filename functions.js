@@ -71,3 +71,63 @@ function readNumber() {
 
   return n;
 }
+
+function getCode(str) {
+  str = prompt('Введите символ, чтобы узнать его код UTF-16 ', '');
+
+  alert( str.codePointAt(0) );
+}
+
+function ucFirst(str) {
+  if (!str) return str;
+
+  str = str[0].toUpperCase() + str.slice(1);
+
+  return str;
+}
+
+function getLowerStr(str) {
+  let lowerStr = str.toLowerCase();
+
+  return lowerStr;
+}
+
+function checkSpam(str) {
+
+  return getLowerStr(str).includes('xxx') 
+    || getLowerStr(str).includes('viagra');
+}
+
+function truncate(str, maxlength) {
+  return (str.length > maxlength ) ?
+    str = str.slice( 0, (maxlength - 1) ) + '…' : str;
+}
+
+function extractCurrencyValue(str) {
+  return +str.slice(1);
+}
+
+function getMidArr(arr) {
+  return Math.trunc( (arr.length / 2) );
+}
+
+function sumInput() {
+  let arr = [],
+    sum = 0;
+
+  for (;true;) {
+    arr.push( prompt('Число?', '') );
+
+    if (arr.at(-1) === '' 
+      || arr.at(-1) === null 
+      || !isFinite( arr.at(-1) )) {
+
+      arr.pop();
+      break;
+    }
+
+    sum += parseInt(arr.at(-1));
+  }
+
+return sum;
+}
