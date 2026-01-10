@@ -104,4 +104,4 @@ arr.sort( (a, b) => 0.5 - Math.random() )   // Рандомная сортиро
 // .forEach(function(item, index, array) {...}) запустить функцию для каждого эл массива
 // str.split(delim) разбивает строку на массив по заданному разделителю
 
-
+Array.from(arrLike)                         // Псевдомассив -> массив

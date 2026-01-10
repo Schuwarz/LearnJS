@@ -146,3 +146,7 @@ function copySorted(arr) {
     .slice()
     .sort( (a, b) => a.localeCompare(b) )
 }
+
+function показать(str) {
+  alert(str);
+}
