@@ -150,3 +150,7 @@ function copySorted(arr) {
 function показать(str) {
   alert(str);
 }
+
+function unique(arr) {
+  return Array.from(new Set(arr));
+}

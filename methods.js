@@ -105,3 +105,34 @@ arr.sort( (a, b) => 0.5 - Math.random() )   // Рандомная сортиро
 // str.split(delim) разбивает строку на массив по заданному разделителю
 
 Array.from(arrLike)                         // Псевдомассив -> массив
+
+// Методы map
+
+new Map()           // Создает коллекцию
+map.set(key, value) // Записывает value по key
+map.get(key)        // Возвращает value
+map.has(key)        // Возвращает true
+map.delete(key)     // Удаляет пару key/value
+map.clear()         // Очищает от всех эл
+map.size            // Возвращает кол-во эл
+map.keys()          // Возвращает объект по key
+map.values()        // Возвращает объект по value
+map.entries()       // Возвращает объект по парам key/value
+
+// forEach так же работает для map
+// Object.enries(obj) Метод возвращает массив key-value из которого можно создать map
+// Object.fromEntries(arr) Возвражает объект
+
+// Методы set
+
+new Set(iterable)   // Создает коллекцию
+set.add(value)      // Дабавляет значение
+set.delete(value)   // Удаляет значение, возвращает true\false
+set.has(value)      // Возвращает true
+set.clear()         // Очищает от всех эл
+set.size            // Возвращает кол-во эл
+set.values()
+set.keys()
+set.entries()
+
+// for..of \ forEach работает для set
