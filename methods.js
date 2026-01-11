@@ -151,3 +151,10 @@ new WeakSet()
 weakSet.add()
 weakSet.has()
 weakSet.delete()
+
+// Переборы для простых объектов
+
+Object.keys(obj)      // Возвращает массив ключей
+Object.values(obj)    // Возвращает массив значений
+Object.entries(obj)   // Возвращает массив пар key-value
+

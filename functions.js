@@ -147,10 +147,20 @@ function copySorted(arr) {
     .sort( (a, b) => a.localeCompare(b) )
 }
 
-function показать(str) {
-  alert(str);
+function показать(строка) {
+  alert(строка);
 }
 
 function unique(arr) {
   return Array.from(new Set(arr));
+}
+
+function суммаЗарплат(объект) {
+  return Object
+    .values(зарплаты)
+    .reduce( (сумма, текущее) => сумма + текущее, 0);
+}
+
+function считать(объект) {
+  return Object.keys(объект).length;
 }

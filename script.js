@@ -217,9 +217,7 @@ alert( matrix[1][1] );
 
 // ########## Реакт часть, перенести!!!
 
-// Компоненты - js функции, возвращают разметку
-
-// Компоненты - с большой буквы
+// Компоненты - js функции, возвращают разметку. Пишуться с большой буквы
 
 // export default - имеет главный компонент файла
 
@@ -255,11 +253,12 @@ const listItems = products.map(product =>     // Перебрали массив
   );
 
 */
+
 // Можно объявлять функ обработчиков событий
 
 /*
 function MyButton() {
-  function nadleClick() {alert('жопа');}
+  function handleClick() {alert('жопа');}
 
   return (
     <button onClick={handleClick}>              // у handleClick не нужны ()
@@ -280,3 +279,34 @@ function MyButton() {
   }
 */
 
+// useState Возвращает текущее состояние something и функ setSomething
+
+// хуки - функ начинающиеся c use. (useState)
+
+// Пропсы - информация передаваемая вниз или вверх компонентам
+
+/*
+import {useState} from 'react';
+
+export default function MyApp() {
+
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+
+function MyButton(count, onClick) {
+  return (
+    <button onClick={onClick}></button>
+  )
+}
+*/
