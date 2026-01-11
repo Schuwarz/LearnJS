@@ -136,3 +136,18 @@ set.keys()
 set.entries()
 
 // for..of \ forEach работает для set
+
+// Методы weakmap
+
+new WeakMap()
+weakMap.get(key)
+weakmap.set(key, value)
+weakmap.delete(key)
+weakmap.has(key)
+
+// Методы weakSet
+
+new WeakSet()
+weakSet.add()
+weakSet.has()
+weakSet.delete()

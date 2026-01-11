@@ -212,3 +212,71 @@ alert( matrix[1][1] );
 // map - коллекция ключ/значение, как и Object. Но основное отличие в том, что Map позволяет использовать ключи любого типа.
 
 // Set – это особый вид коллекции: «множество» значений (без ключей), где каждое значение может появляться только один раз.
+
+// WeakMap - ключи это объекты. Не предотвращает удаление объекта. Чаще - доп.хранилище или кеширование
+
+// ########## Реакт часть, перенести!!!
+
+// Компоненты - js функции, возвращают разметку
+
+// Компоненты - с большой буквы
+
+// export default - имеет главный компонент файла
+
+// В jsx нужно закрывать все теги, возвращает только 1 тег
+
+// В jsx css-классы объявляются через className
+
+// В jsx можно писать js в {...}
+
+// В jsx можно js в атрибутах src={user.imgUrl}
+
+// В атрибутах можно объекты style={{width: user.imageSize, height: user.imageSize}}
+
+// Можно применять if \ ?
+
+// Для отрисовки списков: цикл for \ метод массива .map()
+
+/*
+const products = [                            // Создали массив
+  { title: 'Капуста', id: 1 },
+  { title: 'Чеснок', id: 2 },
+  { title: 'Яблоко', id: 3 },
+];
+
+const listItems = products.map(product =>     // Перебрали массив
+  <li key={products.id}>                      // У li атрибут key
+    {products.title}
+  </li>
+  );
+
+  return (                                     // Вернули список
+    <ul>{listItems}</ul>
+  );
+
+*/
+// Можно объявлять функ обработчиков событий
+
+/*
+function MyButton() {
+  function nadleClick() {alert('жопа');}
+
+  return (
+    <button onClick={handleClick}>              // у handleClick не нужны ()
+      Click me
+    </button>
+  );
+}
+*/
+
+// Состояние
+
+/*
+  import { useState } from 'react';
+
+  function MyButton() {
+    const [count, setCount] = useState(0);
+    ...
+  }
+*/
+
