@@ -164,3 +164,18 @@ function суммаЗарплат(объект) {
 function считать(объект) {
   return Object.keys(объект).length;
 }
+
+function topSalary(obj) {
+
+  let max = 0;
+  let maxName = null;
+
+  for (const [name, salary] of Object.entries(salaries)) {
+    if (max < salary) {
+      max = salary;
+      maxName = name;
+    }
+  }
+
+  return maxName;
+}

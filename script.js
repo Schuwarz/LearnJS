@@ -215,6 +215,26 @@ alert( matrix[1][1] );
 
 // WeakMap - ключи это объекты. Не предотвращает удаление объекта. Чаще - доп.хранилище или кеширование
 
+// ... - оператор Остаточные параметры
+// let [name1, name2, ...ostalnoe] = ['Петя', 'Саша', 'Пиво', 'Водочка', 'Селедочка'];
+// ostalnoe[0] 'Пиво'
+// ostalnoe[2] 'Селедочка'
+// ostalnoe.length 3
+
+// let {width: w, height: h, title} = {title: "Menu", width: 100, height: 200}
+// title 'Menu'
+// w 100
+// h 200
+
+// let {name: n = 'jopa', ...ostalnoe} = obj
+// : n Изменить название
+// = 'jopa' Задать зачение по умолчанию
+// ...ostalnoe Соберет остальные св-ва
+
+// let {prop : varName = defaultValue, ...rest} = object
+// let [item1 = defaultValue, item2, ...rest] = array
+
+
 // ########## Реакт часть, перенести!!!
 
 // Компоненты - js функции, возвращают разметку. Пишуться с большой буквы
