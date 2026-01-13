@@ -179,3 +179,10 @@ function topSalary(obj) {
 
   return maxName;
 }
+
+function getWeekDay(date) {
+
+  let days = [ 'ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
+
+  return days[date.getDay()];
+}

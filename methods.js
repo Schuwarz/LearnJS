@@ -158,3 +158,37 @@ Object.keys(obj)      // Возвращает массив ключей
 Object.values(obj)    // Возвращает массив значений
 Object.entries(obj)   // Возвращает массив пар key-value
 
+// Методы Date
+// Все методы возвращают в соотв с местным часовым поясом
+
+.getFullYear()
+.getMonth()
+.getDate()            // Получить день месяца
+.getDay()             // Получить день недели 0(воскресенье) - 6(суббота)
+.getHours()
+.getMinutes()
+.getSeconds()
+.getMilliseconds()
+.getTime()             // Возвращает таймстамп мс
+.getTimezoneOffset()   // Возвращает разницу в минутах с UTC
+
+// UTC варианты
+
+.getUTCFullYear()
+.getUTCMonth()
+.getUTCDay()
+
+// Установка компонентов даты
+
+.setFullYear(year, [month], [date])
+.setMonth(month, [date])
+.setDate(date)
+.setHours(hour, [min], [sec], [ms])
+.setMinutes(min, [sec], [ms])
+.setSeconds(sec, [ms])
+.setMilliseconds(ms)
+.setTime(milliseconds)                    // устанавливает дату в виде целого кол-ва мс, прошедших с 01.01.1970 UTC
+
+// У всех есть UTC вариант
+
+Date.parse(str) // Возвращает таймстамп из строки формата YYYY-MM-DDTHH:mm:ss.sssZ 

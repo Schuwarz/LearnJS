@@ -1,5 +1,35 @@
 "use strict";
 
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+
+const header = document.querySelector("h1");
+
+let interval = null;
+
+header.onmouseover = event => {
+  let повторение = 0;
+
+  clearInterval(interval);
+
+  interval = setInterval(() => {
+    event.target.innerText = event.target.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < повторение) {
+          return event.target.dataset.value[index];
+        }
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join("");
+
+    if (повторение >= event.target.dataset.value.length) {
+      clearInterval(interval);
+    }
+
+    повторение += 1 / 3;
+  }, 30);
+}
+
 // alert(message);
 
 // prompt(question, [default]);
@@ -103,7 +133,7 @@
 // Инкрементальная сборка (Incremental collection)
 // Сборка в свободное время (Idle-time collection)
 
-// Метод объекта - Функция, которая является свойством объекта 
+// Метод объекта - Функция, которая является свойством объекта
 
 // Когда мы пишем наш код, используя объекты для представления сущностей реального мира – ООП
 
@@ -154,11 +184,11 @@ let obj = {
 // let n = 0o377;
 
 // alert(`... ${...}`)
-/* 
+/*
 let guestList = `Guests:
   * John
-  * Pete 
-  * Mary 
+  * Pete
+  * Mary
 `;
 */
 
@@ -233,6 +263,21 @@ alert( matrix[1][1] );
 
 // let {prop : varName = defaultValue, ...rest} = object
 // let [item1 = defaultValue, item2, ...rest] = array
+
+// let now = new Date();
+
+// new Date(timestamp) считает миллисекунды от 1 янв 1970 utc+0
+
+// new Date(datestring) считывает строку "2017-01-26"
+
+// new Date(year, month, date, hours, minutes, seconds, ms)
+
+// Date.now(); Аналог new Date().getTime() но более быстрый
+
+// Для получения наиболее достоверных результатов тестирования производительности весь набор бенчмарков нужно запускать по нескольку раз.
+
+// Скипнул задачки на Дата и Время
+
 
 
 // ########## Реакт часть, перенести!!!
