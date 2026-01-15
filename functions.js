@@ -186,3 +186,68 @@ function getWeekDay(date) {
 
   return days[date.getDay()];
 }
+
+// скрипт для работы 
+{let fromVox = prompt('','');
+
+function arrToMap(arr) {
+  let slicedArr = new Array();
+  let i = 0;
+
+  for (let item of arr) {
+    let pos = item.indexOf(':');
+
+    slicedArr[i] = [item.slice(0, pos), item.slice( ( pos + 2 ) )];
+    i++;
+  }
+
+  return new Map(slicedArr);
+}
+
+function getDate(map, key) {
+  let str = map.get(key);
+  return str.slice(0, str.indexOf(','));
+}
+
+function getTime(map, key) {
+  let str = map.get(key);
+  return str.slice( (str.indexOf(',') + 2));
+}
+
+function clearOfShit (map, key) {
+  let str = map.get(key);
+  return str.slice( 0, str.indexOf('\r'))
+}
+
+function myConvert(str) {
+  let map = arrToMap(str.split('\n\r\n'));
+  let sortedMap = new Map();
+
+  sortedMap.set('Дата ВУ', getDate(map, 'Дата прошлого ВУ'));
+  sortedMap.set('Время ВУ', getTime(map, 'Дата прошлого ВУ'), 'Дата прошлого ВУ' );
+  sortedMap.set('Время ВУ', clearOfShit(sortedMap, 'Время ВУ'));
+  sortedMap.set('Дата назначения', getDate(map, 'Выполнена в'));
+  sortedMap.set('Время назначения', getTime(map, 'Выполнена в'));
+  sortedMap.set('Время назначения', clearOfShit(sortedMap, 'Время назначения'));
+  sortedMap.set('Действие', 'Назначение ВУ');
+  
+  return sortedMap;
+}
+
+alert(fromVox);
+
+let mapForUser = myConvert(fromVox);
+
+for (let key of mapForUser.keys()) {
+  console.log((`${key} -> ${mapForUser.get(key)}`));
+}}
+
+function хуй(str) {
+  console.log(str);
+  alert(str);
+}
+
+хуй(JSON.stringify(meetup,
+  function replacer(key, value) {
+    return (key != '' && value == meetup) ? undefined : value;
+  }));

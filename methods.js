@@ -46,24 +46,26 @@ user = {
 // Math.min(a, b, ..)
 // Math.pow(n, power)
 
-// str.at(pos)
 
-// .toLowerCase()
-// .toUpperCase()
+// Методы строк
 
-// str.indexOf(substr, pos)
-// str.lastIndexOf(substr, position)
-// str.includes(substr, pos)
-// str.startsWith()
-// str.endsWith()
-// str.slice(start, end)
-// str.substring(start, end)
-// str.substr(start, lenght)
-// str.codePointAt(pos)
-// String.fromCodePoint(code)
-// str.localeCompare(str2)
-// str.trim()
-// str.repeat(n)
+str.at(pos)
+str.toLowerCase()
+str.toUpperCase()
+str.indexOf(substr, pos)
+str.lastIndexOf(substr, position)
+str.includes(substr, pos)
+str.startsWith()
+str.endsWith()
+str.slice(start, end)
+str.substring(start, end)
+str.substr(start, lenght)
+str.codePointAt(pos)
+String.fromCodePoint(code)
+str.localeCompare(str2)
+str.trim()
+str.repeat(n)                         // Повторяет строку n раз
+str.split(delim)                      // разбивает строку на массив по заданному разделителю
 
 // .lenght
 
@@ -102,7 +104,6 @@ arr.sort( (a, b) => 0.5 - Math.random() )   // Рандомная сортиро
 
 // если в obj есть [Symbol.isConcatSpreadable]: true добавиться concat
 // .forEach(function(item, index, array) {...}) запустить функцию для каждого эл массива
-// str.split(delim) разбивает строку на массив по заданному разделителю
 
 Array.from(arrLike)                         // Псевдомассив -> массив
 
@@ -192,3 +193,16 @@ Object.entries(obj)   // Возвращает массив пар key-value
 // У всех есть UTC вариант
 
 Date.parse(str) // Возвращает таймстамп из строки формата YYYY-MM-DDTHH:mm:ss.sssZ 
+
+// JSON методы
+
+JSON.stringify(value[, replacer, space])  // Преобразование объекта в JSON 
+// value - Значение для кодирования.
+// replacer - Массив свойств для кодирования или функция соответствия function(key, value).
+// space - Дополнительное пространство (отступы), используемое для форматирования.
+
+JSON.parse(str[, revier])      // Преобразование JSON в объект
+// str - JSON для преобразования в объект
+// revier - Необязательная функция, которая будет вызываться для каждой пары (ключ, значение) и может преобразовывать значение.
+
+.toJSON()         // Как и toString для преобразования строк, объект может предоставлять метод toJSON для преобразования в JSON.
