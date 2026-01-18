@@ -316,6 +316,67 @@ let meetup = JSON.parse(str, function(key, value) {
 alert( meetup.date.getDate() ); // 30 - теперь работает!
 */
 
+// Рекурсия. 
+// Ветка, кот. испольняется очевидно - база рекурсии. 
+// Ветка, кот. вызывает себя - шаг рекурсии. 
+// Общее кол-во вложенных вызовов - глубина рекурсии. Глубина рекурсии = макс. кол-во контекстов в стеке
+// Контекст выполнения - специальная внутренняя структура данных, которая содержит информацию о вызове функции.
+// 1 вызов - 1 контекст
+// Контекст запоминается в стеке контекстов выполнения
+// Любая рекурсия может быть переделана в цикл. Как правило, вариант с циклом будет эффективнее.
+/*
+let company = { // тот же самый объект, сжатый для краткости
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+  development: {
+    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+    internals: [{name: 'Jack', salary: 1300}]
+  }
+};
+
+function sumSalaries(department) {
+  if (Array.isArray(department)) { // случай (1)
+    return department.reduce((prev, curr) => prev + curr.salary, 0); // сумма элементов массива
+  } else { // случай (2)
+    let sum = 0;
+    for (let subdep of Object.values(department)) {
+      sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+    }
+    return sum;
+  }
+}
+*/
+
+// Связный список - стурктура данных. лемент связного списка определяется рекурсивно как объект с:
+// value,
+// next – свойство, ссылающееся на следующий элемент связного списка или null, если это последний элемент.
+/*
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value:4,
+        next: null
+      }
+    }
+  }
+};
+
+let list = { value: 1 };
+list.next = { value: 2 };
+list.next.next = { value: 3 };
+list.next.next.next = { value: 4 };
+list.next.next.next.next = null;
+
+list = { value: "new item", next: list }; // добавление нового элемента в список
+list.next = list.next.next;               // Удалить из середины
+*/
+
+
+
+
 // ########## Реакт часть, перенести!!!
 
 // Компоненты - js функции, возвращают разметку. Пишуться с большой буквы

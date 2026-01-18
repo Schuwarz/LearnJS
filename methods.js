@@ -48,24 +48,32 @@ user = {
 
 
 // Методы строк
-
-str.at(pos)
-str.toLowerCase()
-str.toUpperCase()
-str.indexOf(substr, pos)
-str.lastIndexOf(substr, position)
-str.includes(substr, pos)
-str.startsWith()
-str.endsWith()
-str.slice(start, end)
-str.substring(start, end)
+let str = "Hello";
+str.charAt(4)                       // o
+str.startsWith('H')                 // true
+str.endsWith('o')                   // true
+str.includes('x')                   // false
+str.indexOf('l')                    // 2
+str.lastIndexOf('l')                // 3
+str.match(/[A-Z]/g)                 // ['H']   // Изучить
+str.padStart(6, '?')                // ?Hello
+str.padEnd(6, '?')                  // Hello?
+str.repeat(3)                       // HelloHelloHello
+str.replace('llo', 'y')             // Hey
+str.search('e')                     // 1       // Изучить
+str.slice(1, 3)                     // el
+str.split('')                       // ['H','e','l','l','o']
+str.substring(2, 4)                 // ll
+str.toLowerCase()                   // hello
+str.toUpperCase()                   // HELLO
+' Hello '.trim()                    // Hello
+' Hello '.trimStart()               // 'Hello '
+' Hello '.trimEnd()                 // ' Hello'
+str.at(pos)   
 str.substr(start, lenght)
 str.codePointAt(pos)
 String.fromCodePoint(code)
 str.localeCompare(str2)
-str.trim()
-str.repeat(n)                         // Повторяет строку n раз
-str.split(delim)                      // разбивает строку на массив по заданному разделителю
 
 // .lenght
 

@@ -251,3 +251,25 @@ function хуй(str) {
   function replacer(key, value) {
     return (key != '' && value == meetup) ? undefined : value;
   }));
+
+  function sumTo(n, ver) {
+  let sum = 0;
+
+  // ver = 1. С использованием цикла
+  if (ver === 1) {
+    for (let i = n; i != 0; i--) {
+      sum += i;
+    }
+    return sum;
+  }
+
+  // ver = 2. С использованием рекурсии
+  if (ver === 2) {
+    sum = n;
+    if (n == 1) {
+      return sum;
+    } else {
+      return sum += sumTo(n - 1, 2);
+    }
+  }
+}
