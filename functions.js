@@ -287,3 +287,25 @@ function makeCounter() {
 
   return counter;
 }
+
+function printNumbers(from, to, v) {
+  let i = from;
+
+  // v1 через setInterval
+  if (v === 1) {
+    let timerId = setInterval(() => {
+      if (i === to) clearInterval(timerId);
+      alert(i);
+      i++;
+    }, 1000);
+  }
+
+  // v2 через рекурсионный setTimeout
+  if (v === 2) {
+    setTimeout(function tick() {
+      if (i < to) setTimeout(tick, 1000);
+      alert(i);
+      i++;
+    }, 1000)
+  }
+}
