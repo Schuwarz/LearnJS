@@ -392,10 +392,68 @@ list.next = list.next.next;               // Удалить из середин�
 
 // ########## Введение: колбэки ##########
 
-// 1. Многие действия в JavaScript асинхронные
-// 2. Ассинхронные функ. - действие (загрузка скрипта) будет завершено не сейчас, а потом
-// 3. callback — передаваемый аргумент в функ., функция, которая будет вызвана по завершению асинхронного действия.
+// Многие действия в JavaScript асинхронные
+// Ассинхронные функ. - действие (загрузка скрипта) будет завершено не сейчас, а потом
+// callback — передаваемый аргумент в функ., функция, которая будет вызвана по завершению асинхронного действия.
 // error-first callback - Первый аргумент функции callback зарезервирован для ошибки. Второй и последующие аргументы — для результатов выполнения.
+
+// ########## Промисы ##########
+
+let promise = new Promise(function(resolve, reject) {
+  // функция-исполнитель (executor)
+  // "певец"
+});
+
+// resolve и reject – это колбэки, которые предоставляет сам JavaScript
+// resolve(value) — если работа завершилась успешно, с результатом value.
+// reject(error) — если произошла ошибка, error – объект ошибки.
+
+// У объекта promise, возвращаемого конструктором new Promise, есть внутренние свойства:
+// state — вначале "pending", потом меняется на "fulfilled" при вызове resolve или на "rejected" при вызове reject.
+// result — вначале undefined, далее изменяется на value при вызове resolve(value) или на error при вызове reject(error).
+
+promise.then(
+  function(result) { /* обработает успешное выполнение */ },
+  function(error) { /* обработает ошибку */ }
+);
+
+// .catch(f) – обработает только ошибку.
+
+// .finally(f) - одна функция выполниться в обоих случаях
+// Обработчик, вызываемый из finally, не имеет аргументов. В finally мы не знаем, как был завершён промис. И это нормально, потому что обычно наша задача – выполнить «общие» завершающие процедуры
+// Обработчик finally «пропускает» результат или ошибку дальше, к последующим обработчикам.
+// Обработчик finally также не должен ничего возвращать
+
+function loadScript(src, callback) {                                              // Код с колбэками
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () => callback(null, script);
+  script.onerror = () => callback(new Error(`Ошибка загрузки скрипта ${src}`));
+
+  document.head.append(script);
+}
+
+function loadScript(src) {                                                      // код с промисами
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
+
+    document.head.append(script);
+  });
+}
+
+let promise = loadScript("...");  // работа с этим кодом
+
+promise.then(
+  script => alert(`${script.src} загружен!`),
+  error => alert(`Ошибка: ${error.message}`)
+);
+
+promise.then(script => alert('Ещё один обработчик...'));
 
 // ########## Реакт часть, перенести!!!
 
