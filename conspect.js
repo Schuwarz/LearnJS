@@ -455,6 +455,54 @@ promise.then(
 
 promise.then(script => alert('Ещё один обработчик...'));
 
+// ########## Async/await ##########
+
+// async - возвращает промис
+
+async function f() {
+  return 1;
+}
+
+async function f() {
+  return Promise.resolve(1);
+}
+
+f().then(alert) // 1
+
+// await - только внутри async-функций, ждет пока промис не выполнитсья и возвращает результат
+
+let value = await promise;
+
+// Пример
+
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Готово"), 1000)
+  });
+
+  let result = await promise; // Ждет промис
+
+  alert(result);
+}
+
+f();
+
+// await promise - возвращает результат. Если ошибка возвращает промис с reject
+
+async function f() {
+  let response = await fetch('...');
+}
+
+// f() вернёт промис в состоянии rejected
+f().catch(alert); // TypeError: failed to fetch // (*)
+
+// ########## КУСОЧЕК ПРО FETCH ##########
+
+let promise = fetch(url);
+
+// запрашивает по сети url и возвращает промис. Промис возвращает объект response после того, как удалённый сервер присылает заголовки ответа, но до того, как весь ответ сервера полностью загружен.
+
 // ########## Реакт часть, перенести!!!
 
 // Компоненты - js функции, возвращают разметку. Пишуться с большой буквы
