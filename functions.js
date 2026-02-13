@@ -347,3 +347,14 @@ loadJson('no-such-user.json') // (3)
 
   f();
 }
+
+{
+  (async () => {
+    let url = 'https://geek-jokes.sameerkumar.website/api?format=json';
+    let response = await fetch(url);
+
+    let result = await response.json();
+
+    хуй(result.joke);
+  })();
+}

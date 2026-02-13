@@ -1,16 +1,16 @@
-alert( сообщение );
-prompt( вопрос, [default] );
-confirm( вопрос );
+alert(сообщение);
+prompt(вопрос, [default ]);
+confirm(вопрос);
 
-String( значение );
-Number( значение );
-Boolean( значение );
+String(значение);
+Number(значение);
+Boolean(значение);
 
 alert(+true); // 1
 
 += *= ++ -- != !== == === % **
 
-result = a || b;
+  result = a || b;
 true || alert("Никогда не сработает");
 false || alert("Сработает");
 
@@ -31,27 +31,27 @@ a ??= b
 
 // Конструкции
 
-if ( условие ) { ... } else { ... };
+if (условие) { ... } else { ... };
 
 let result = условие ? ... : ...;
 
-while ( условие ) { ... }
+while (условие) { ... }
 
-while ( i ) это while ( i != 0 )
+while (i) это while (i != 0)
 
-do { ... } while ( условие )
+  do { ... } while (условие)
 
-for ( начало; условие; шаг ) { ... }
+for (начало; условие; шаг) { ... }
 break - прерываем цикл
 continue - переходим на следующую итерацию
 labelName: for ( ... ) { ... }
 break\continuue labelName - остановит нужный цикл
 
-switch(x) {case 'значение1': ... break; case 'значение2': ... break; default: ... break; }
+switch (x) { case 'значение1': ... break; case 'значение2': ... break; default: ... break; }
 
 function имя(параметры) { ... }      // Function Declaration
 Параметр – это переменная, указанная в круглых скобках в объявлении функции.
-Аргумент – это значение, которое передаётся функции при её вызове.
+  Аргумент – это значение, которое передаётся функции при её вызове.
 
 // let имя = function(параметры) { ... };       (Function Expression)
 
@@ -399,7 +399,7 @@ list.next = list.next.next;               // Удалить из середин�
 
 // ########## Промисы ##########
 
-let promise = new Promise(function(resolve, reject) {
+let promise = new Promise(function (resolve, reject) {
   // функция-исполнитель (executor)
   // "певец"
 });
@@ -413,8 +413,8 @@ let promise = new Promise(function(resolve, reject) {
 // result — вначале undefined, далее изменяется на value при вызове resolve(value) или на error при вызове reject(error).
 
 promise.then(
-  function(result) { /* обработает успешное выполнение */ },
-  function(error) { /* обработает ошибку */ }
+  function (result) { /* обработает успешное выполнение */ },
+  function (error) { /* обработает ошибку */ }
 );
 
 // .catch(f) – обработает только ошибку.
@@ -435,7 +435,7 @@ function loadScript(src, callback) {                                            
 }
 
 function loadScript(src) {                                                      // код с промисами
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     let script = document.createElement('script');
     script.src = src;
 
@@ -502,6 +502,121 @@ f().catch(alert); // TypeError: failed to fetch // (*)
 let promise = fetch(url);
 
 // запрашивает по сети url и возвращает промис. Промис возвращает объект response после того, как удалённый сервер присылает заголовки ответа, но до того, как весь ответ сервера полностью загружен.
+
+// ########## Fetch ##########
+
+// AJAX - Asynchronous JavaScript And XML. Сетевые запросы на сервер
+
+let promise = fetch(url, [options])
+// url - для отправки запроса
+// options - доп. параметры: метод, заголовки и тд.
+
+// возвращает промис
+
+// 1. promise выполняется с объектом встроенного класса Response в качестве результата, как только сервер пришлёт заголовки ответа.
+
+// status - код статуса HTTP-запроса
+// ok - логическое значение: будет true, если код HTTP-статуса в диапозоне 200-299
+
+// Пример
+let response = await fetch(url);
+
+if (response.ok) {
+  let json = await response.json();
+} else {
+  alert("Ошибка HTTP: " + response.status)
+}
+
+// 2. для получения тела ответа нам нужно использовать дополнительный вызов метода.
+
+let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+let response = await fetch(url);
+
+let commits = await response.json();
+
+alert(commits[0].author.login);
+
+// Пример на промисах
+
+fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+  .then(response => response.json())
+  .then(commits => alert(commits[0].author.login))
+
+// Заголовки ответа храняться в response.headers
+// Можно использовать методы Map
+
+// Пример
+
+let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
+
+alert(response.headers.get('Content-Type'));    // Получить 1 заголовок
+
+for (let [key, value] of response.headers) {    // Перебрать все заголовки
+  alert(`${key} = ${value}`);
+}
+
+// Для установки заголовка запроса в fetch мы можем использовать опцию headers. Она содержит объект с исходящими заголовками
+
+let response = fetch(protectedUrl, {
+  headers: {
+    Authentication: 'secret'
+  }
+});
+
+// ========== POST-запросы ==========
+
+// fetch параметры:
+// method - HTTP метод (напр. POST)
+// body - тело запроса, одно из:
+// строка (напр. JSON)
+// объект FormData
+// Blob/BufferSource
+// URLSearchParams
+
+// Пример с JSON
+let user = {
+  name: 'John',
+  surname: 'Smith'
+};
+
+let response = await fetch('/article/fetch/post/user', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: JSON.stringify(user)
+});
+
+let result = await response.json();
+alert(result.message);
+
+// ========== ИТОГО ==========
+
+// fetch запрос состоит из 2х операторов await
+let response = await fetch(url, options); // завершается с заголовками ответа
+let result = await response.json();       // читать тело ответа в формате JSON
+
+// без await
+fetch(url, options)
+  .then(response => response.json())
+  .then(result => /* обрабатываем результат */)
+
+// параметры ответа:
+response.status  // HTTP-код ответа
+response.ok      // true, если статус ответа в диапазоне 200-299
+response.headers // похожий на Map объект с HTTP-заголовками
+
+// методы для получения тела ответа:
+response.text()         // возвращает ответ как обычный текст
+response.json()         // декодирует ответ в формате JSON
+response.formData()     // возвращает ответ как объект FormData
+response.blob()         // возвращает объект как Blob
+response.arrayBuffer()  // возвращает ответ как ArrayBuffer
+
+// опции fetch:
+method  // HTTP-метод
+headers // объект с запрашиваемыми заголовками
+body    // данные для отправки (тело запроса) в виде текста, FormData, BufferSource, Blob или UrlSearchParams.
 
 // ########## Реакт часть, перенести!!!
 
