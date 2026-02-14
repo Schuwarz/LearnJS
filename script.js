@@ -29,6 +29,3 @@ header.onmouseover = event => {
     повторение += 1 / 3;
   }, 30);
 }
-
-
-

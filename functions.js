@@ -358,3 +358,35 @@ loadJson('no-such-user.json') // (3)
     хуй(result.joke);
   })();
 }
+
+{
+  let arrNames = ['Schuwarz', 'MEDOYED', 'Ivan1990Nik'];
+
+  let url = 'https://api.github.com/users/';
+
+
+
+  async function getUsers(names) {
+    let users = [];
+
+    for (let name of names) {
+      let user = fetch(`${url}${name}`).then(
+        successResponse => {
+          if (successResponse.status != 200) {
+            return null;
+          } else {
+            return successResponse.json();
+          }
+        },
+        failResponse => {
+          return null;
+        }
+      );
+      users.push(user);
+    }
+
+    let result = await Promise.all(users);
+
+    return result;
+  }
+}
