@@ -625,6 +625,57 @@ method  // HTTP-метод
 headers // объект с запрашиваемыми заголовками
 body    // данные для отправки (тело запроса) в виде текста, FormData, BufferSource, Blob или UrlSearchParams.
 
+// ===================================
+//        Fetch: ход загрузки
+// ===================================
+
+// fetch позволяет отслеживать процесс получения данных
+// response.body - свойство, чтобы отслеживать ход загрузки данных с сервера
+// ReadableStream("Поток чтения") - особый объект, который предоставляет тело ответа по частям, по мере поступления.
+
+const reader = response.body.getReader(); // Вместо response.json()
+
+while(true) {
+  const {done, value} = await reader.read();
+
+  if (done) {break;}
+
+  console.log(`Получено ${value.length} байт`)
+}
+// done становиться true в последнем фрагменте
+// value - Uint8Array из байтов каждого фрагмента
+
+// Результат await reader.read() - объект с 2мя св-ми:
+// done - true, когда чтение закончено, иначе false
+// value - типизированный массив данных ответа Uint8Array
+
+// рабочий пример
+
+let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100');
+const reader = response.body.getReader();
+const contentLength = +response.headers.get('Content-Length')
+let receivedLength = 0;
+let chunks = [];
+
+while(true) {
+  const {done, value} = await reader.read();
+  if (done) {break;}
+  chunks.push(value);
+  receivedLength += value.length;
+  console.log(`Получено ${receivedLength} из ${contentLength}`);
+}
+
+let chunksAll = new Uint8Array(receivedLength);
+let position = 0;
+for(let chunk of chunks) {
+  chunksAll.set(chunk, position);
+  position += chunk.length;
+}
+
+let result = new TextDecoder("utf-8").decode(chunksAll);
+let commits = JSON.parse(result);
+alert(commits[0].author.login);
+
 // ########## Реакт часть, перенести!!!
 
 // Компоненты - js функции, возвращают разметку. Пишуться с большой буквы
