@@ -39,7 +39,7 @@ while (условие) { ... }
 
 while (i) это while (i != 0)
 
-do { ... } while (условие)
+  do { ... } while (условие)
 
 for (начало; условие; шаг) { ... }
 break - прерываем цикл
@@ -53,7 +53,7 @@ switch (x) { case 'значение1': ... break; case 'значение2': ... 
 
 function имя(параметры) { ... }           // Function Declaration
 
-let имя = function(параметры) { ... };    // Function Expression
+let имя = function (параметры) { ... };    // Function Expression
 
 let имя = (параметры) => ...;             // arrow functions
 
@@ -73,7 +73,7 @@ user[dva slova] = "znachenye"
 
 name,                             // то же самое, что и name: name
 
-"key" in object                   // Проверка, свойства в объекте
+  "key" in object                   // Проверка, свойства в объекте
 
 for (let key in object) { ... }
 
@@ -97,9 +97,9 @@ let arr = [];
 // очередь - добавлять в конец, удалять в начале
 // стек - добавлять в конце, удалять в конце
 
-for (let i=0; i<arr.length; i++) {...}
+for (let i = 0; i < arr.length; i++) {... }
 
-for (let item of arr) {...}
+for (let item of arr) {... }
 
 let matrix = [
   [1, 2, 3],
@@ -107,7 +107,7 @@ let matrix = [
   [7, 8, 9],
 ];
 
-alert( matrix[1][1] );
+alert(matrix[1][1]);
 
 
 String(arr) // возвращает строку '1,2,3'
@@ -134,10 +134,10 @@ let obj = {
 
 Symbol.toPrimitive
 
-obj[Symbol.toPrimitive] = function(hint) {
+obj[Symbol.toPrimitive] = function (hint) {
   код для преобразования
   возвращает примитивное значение
-  hint = чему-то из "string", "number", "default"
+  hint = чему - то из "string", "number", "default"
 }
 
 
@@ -635,10 +635,10 @@ body    // данные для отправки (тело запроса) в в�
 
 const reader = response.body.getReader(); // Вместо response.json()
 
-while(true) {
-  const {done, value} = await reader.read();
+while (true) {
+  const { done, value } = await reader.read();
 
-  if (done) {break;}
+  if (done) { break; }
 
   console.log(`Получено ${value.length} байт`)
 }
@@ -657,9 +657,9 @@ const contentLength = +response.headers.get('Content-Length')
 let receivedLength = 0;
 let chunks = [];
 
-while(true) {
-  const {done, value} = await reader.read();
-  if (done) {break;}
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) { break; }
   chunks.push(value);
   receivedLength += value.length;
   console.log(`Получено ${receivedLength} из ${contentLength}`);
@@ -667,7 +667,7 @@ while(true) {
 
 let chunksAll = new Uint8Array(receivedLength);
 let position = 0;
-for(let chunk of chunks) {
+for (let chunk of chunks) {
   chunksAll.set(chunk, position);
   position += chunk.length;
 }
@@ -675,6 +675,58 @@ for(let chunk of chunks) {
 let result = new TextDecoder("utf-8").decode(chunksAll);
 let commits = JSON.parse(result);
 alert(commits[0].author.login);
+
+// ===================================
+//      Fetch: прерывание запроса
+// ===================================
+
+// AbortController - универсальный объект, для отмены асинхронных задач
+
+// ========== 1. Cоздаём контроллер ==========
+
+let controller = new AbortController();
+let signal = controller.signal;
+
+// Метод abort()
+// Св-во .signal
+
+// вызов abort() - создает событие abort в controller.signal, а cв-во controller.signal.aborted становится true
+
+signal.addEventListener('abort', () => alert("отмена!")); // срабатывает при вызове controller.abort()
+controller.abort(); // отмена!
+alert(signal.aborted); // true
+
+// ========== 2. Передаем св-во signal опцией в метод fetch ==========
+
+let controller = new AbortController();
+fetch(url, {
+  signal: controller.signal
+});
+
+// ========== 3. Прерывание запроса fetch ==========
+
+controller.abort(); // fetch получает событие из signal и прерывает запрос. Промис завершается с ошибкой
+
+// Ошибку надо обработать, например, в try..catch
+
+// AbortController – масштабируемый, он позволяет отменить несколько вызовов fetch одновременно.
+
+let urls = [...];                           // список URL для параллельных fetch
+let controller = new AbortController();
+
+let fetchJobs = urls.map(url => fetch(url, {
+  signal: controller.signal
+}));
+
+let results = await Promise.all(fetchJobs);  // если откуда-то вызвать controller.abort(), то это прервёт все вызовы fetch
+
+// Если есть собственные ассинхронные задачи, нужно слушать его событие abort
+
+let ourJob = new Promise((resolve, reject) => {         // наша задача
+  controller.signal.addEventListener('abort', reject);
+});
+
+let results = await Promise.all([...fetchJobs, ourJob]); // controller.abort() прервёт все вызовы fetch и наши задачи
 
 // ########## Реакт часть, перенести!!!
 
