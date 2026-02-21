@@ -728,3 +728,8 @@ let ourJob = new Promise((resolve, reject) => {         // наша задача
 
 let results = await Promise.all([...fetchJobs, ourJob]); // controller.abort() прервёт все вызовы fetch и наши задачи
 
+// ===================================
+//      Fetch: запросы на другие сайты
+// ===================================
+
+// Очень загруженный день...
